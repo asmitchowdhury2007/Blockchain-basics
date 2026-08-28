@@ -23,7 +23,7 @@ class Block{
     static Mineblock(prevBlock, data) : Block {
         const timestamps = Date.now();
         const prevHash = prevBlock.hash;
-        return new Block(
+        return new this(
             timestamps,
             prevHash,
             CreateHash({timestamps,prevHash,data}),
@@ -32,10 +32,7 @@ class Block{
     }
 }
 
-const block1 = new Block("27/8","ex567","qwer456","Hi Asmit");
 const genesis = Block.genesis();
-console.log(genesis);
-console.log(block1);
+const mineblock = Block.Mineblock(genesis, "Hello Everyone");
 
-const mineblock = Block.Mineblock(block1, "Hello Everyone");
-console.log(mineblock);
+export {Block}
