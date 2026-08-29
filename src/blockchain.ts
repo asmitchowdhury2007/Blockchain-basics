@@ -15,11 +15,11 @@ class BlockChain {
             return false;
         }
         for(let i=1; i<chain.length;i++){
-            const {timestamps,prevHash,data} = chain[i];
+            const {timestamps,prevHash,nonce,difficulty,data} = chain[i];
             if(chain[i-1].hash !== chain[i].prevHash){
                 return false;
             }
-            const validHash = createHash("sha256").update(timestamps+prevHash+data).digest("hex");
+            const validHash = createHash("sha256").update(timestamps.toString()+prevHash+nonce.toString()+difficulty.toString()+data).digest("hex");
             if(validHash !== chain[i].hash){
                 return false;
             }
